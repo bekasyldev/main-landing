@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: protectorai-web
+    ports:
+      - "5173:80" # external 5173 → container 80
+    restart: unless-stopped
+    networks:
+      - protectorai-network
+
+networks:
+  protectorai-network:
+    driver: bridge
